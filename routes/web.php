@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+// use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\AlimentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,14 +15,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Auth::routes();
+// Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Auth::routes();
+// Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::resource('aliments', AlimentController::class);
+
+Route::get('/locations/frigorifero', [AlimentController::class, 'frigorifero'])->name('frigorifero');
+Route::get('/locations/spesa', [AlimentController::class, 'spesa'])->name('spesa');
+Route::get('/locations/magazzino', [AlimentController::class, 'magazzino'])->name('magazzino');
