@@ -16,7 +16,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Type:</strong>
-                {{ $aliment->type }}
+                {{ $aliment->type->name }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -28,7 +28,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Number:</strong>
-                {{ $aliment->numero }}
+                {{ $aliment->number }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -40,13 +40,13 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Location:</strong>
-                {{ $aliment->location }}
+                {{ $aliment->location->name }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Scadenza:</strong>
-                {{ $aliment->scadenza }}
+                <strong>Expiry date:</strong>
+                {{ $aliment->expiryDate }}
             </div>
         </div>
     </div>

@@ -17,19 +17,19 @@ class CreateAlimentsTable extends Migration
             $table->id();
             $table->string('name',191)->nullable(true);
 
-            $table->string('type',191)->nullable(true);
-            // $table->integer('type_id')->nullable(true);
+            // $table->string('type',191)->nullable(true);
+            $table->unsignedInteger('type_id')->nullable(true);
 
             $table->string('brand',191)->nullable(true);
             // $table->integer('brand_id')->nullable(true);
 
-            $table->integer('numero')->nullable(true);
+            $table->integer('number')->nullable(true);
 
-            $table->string('location',191)->nullable(true);
-            //$table->integer('location_id')->nullable(true);
+            //$table->string('location',191)->nullable(true);
+            $table->unsignedInteger('location_id')->nullable(true);
 
 
-            $table->string('scadenza')->nullable(true);
+            $table->string('expiryDate')->nullable(true);
 
             $table->timestamps();
         });

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Aliment;
 use App\Models\Location;
+use App\Models\Type;
 use Illuminate\Http\Request;
 
 class AlimentController extends Controller
@@ -13,13 +14,11 @@ class AlimentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Location $location)
     {
-        $aliments = Aliment::latest()->paginate(8);
-        // $location = Aliment::find(1);
-
-        // return view('aliments.index',compact('aliments , locations'))
-        return view('aliments.index',compact('aliments'))
+        $aliments = Aliment::with('location','type')->latest()->paginate(8);
+        $locations = Location::get();
+        return view('aliments.index',compact('aliments','locations'))
             // ->with('i');
             ->with('i', (request()->input('page', 1) - 1) * 8);
     }
@@ -29,9 +28,11 @@ class AlimentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Location $location,Type $type)
     {
-        return view('aliments.create');
+        $locations = Location::get();
+        $types = Type::get();
+        return view('aliments.create',compact('locations', 'types'));
     }
 
     /**
@@ -43,11 +44,11 @@ class AlimentController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'type' => 'required',
+            'type_id' => 'required',
             'name' => 'required',
-            'numero'=>'required',
+            'number'=>'required',
             'brand' => 'required',
-            'location' => 'required',
+            'location_id' => 'required',
         ]);
 
         Aliment::create($request->all());
@@ -73,9 +74,11 @@ class AlimentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Aliment $aliment)
+    public function edit(Aliment $aliment, Location $location, Type $type)
     {
-        return view('aliments.edit',compact('aliment'));
+        $locations = Location::get();
+        $types = Location::get();
+        return view('aliments.edit',compact('aliment','locations','types'));
     }
 
     /**
@@ -88,11 +91,11 @@ class AlimentController extends Controller
     public function update(Request $request, Aliment $aliment)
     {
         $request->validate([
-            'type' => 'required',
+            'type_id' => 'required',
             'name' => 'required',
-            'numero' => 'required',
+            'number' => 'required',
             'brand' => 'required',
-            'location' => 'required',
+            'location_id' => 'required',
         ]);
 
         $aliment->update($request->all());
@@ -115,22 +118,28 @@ class AlimentController extends Controller
                         ->with('success','Aliment deleted successfully');
     }
 
-    public function frigorifero()
+    public function findLocation(Location $location)
     {
-        // solo gli alimenti con location = frigorifero saranno passati alla view
-        $aliments = Aliment::where('location','=', 'frigorifero')->paginate(8);
-        return view('locations.frigorifero',compact('aliments'));
+        $aliments = Aliment::where('location_id','=', 'location->id')->paginate(8);
+        return view('findLocations.{{ $location->name }}',compact('aliments'));
     }
 
-    public function spesa()
-    {
-        $aliments = Aliment::where('location','=', 'lista spesa')->paginate(8);
-        return view('locations.spesa',compact('aliments'));
-    }
+    // public function frigorifero()
+    // {
+    //     // solo gli alimenti con location = frigorifero saranno passati alla view
+    //     $aliments = Aliment::where('location','=', 'frigorifero')->paginate(8);
+    //     return view('locations.frigorifero',compact('aliments'));
+    // }
 
-    public function magazzino()
-    {
-        $aliments = Aliment::where('location','=', 'magazzino')->paginate(8);
-        return view('locations.magazzino',compact('aliments'));
-    }
+    // public function spesa()
+    // {
+    //     $aliments = Aliment::where('location','=', 'lista spesa')->paginate(8);
+    //     return view('locations.spesa',compact('aliments'));
+    // }
+
+    // public function magazzino()
+    // {
+    //     $aliments = Aliment::where('location','=', 'magazzino')->paginate(8);
+    //     return view('locations.magazzino',compact('aliments'));
+    // }
 }

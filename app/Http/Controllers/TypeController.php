@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Location;
-use League\Flysystem\Adapter\Local;
+use App\Models\Type;
 
-class LocationController extends Controller
+class TypeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +14,8 @@ class LocationController extends Controller
      */
     public function index()
     {
-        $locations = Location::paginate(8);
-        return view('locations.index',compact('locations'))
+        $types = Type::paginate(8);
+        return view('types.index',compact('types'))
             ->with((request()->input('page', 1) - 1) * 8);
     }
 
@@ -27,7 +26,7 @@ class LocationController extends Controller
      */
     public function create()
     {
-        return view('locations.create');
+        return view('types.create');
     }
 
     /**
@@ -42,10 +41,10 @@ class LocationController extends Controller
             'name' => 'required',
         ]);
 
-        Location::create($request->all());
+        Type::create($request->all());
 
-        return redirect()->route('locations.index')
-                        ->with('success','Location created successfully.');
+        return redirect()->route('types.index')
+                        ->with('success','Type created successfully.');
     }
 
     /**
@@ -54,9 +53,9 @@ class LocationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Location $location)
+    public function show(Type $type)
     {
-        return view('locations.show',compact('location'));
+        return view('types.show',compact('type'));
     }
 
     /**
@@ -65,9 +64,9 @@ class LocationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Location $location)
+    public function edit(Type $type)
     {
-        return view('locaitons.edit',compact('location'));
+        return view('types.edit',compact('type'));
     }
 
     /**
@@ -77,16 +76,16 @@ class LocationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Location $location)
+    public function update(Request $request, Type $type)
     {
         $request->validate([
             'name' => 'required',
         ]);
 
-        $location->update($request->all());
+        $type->update($request->all());
 
-        return redirect()->route('locations.index')
-                        ->with('success','Location updated successfully.');
+        return redirect()->route('types.index')
+                        ->with('success','Type updated successfully.');
     }
 
     /**
@@ -95,11 +94,11 @@ class LocationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Location $location)
+    public function destroy(Type $type)
     {
-        $location->delete();
+        $type->delete();
 
-        return redirect()->route('locations.index')
-                        ->with('success','Location deleted successfully');
+        return redirect()->route('types.index')
+                        ->with('success','Type deleted successfully');
     }
 }

@@ -32,12 +32,12 @@
         @foreach ($aliments as $aliment)
         <tr>
             <td>{{ $aliment->id }}</td>
-            <td>{{ $aliment->type }}</td>
+            <td>{{ $aliment->type->name }}</td>
             <td>{{ $aliment->name }}</td>
-            <td>{{ $aliment->numero }}</td>
+            <td>{{ $aliment->number }}</td>
             <td>{{ $aliment->brand }}</td>
-            <td>{{ $aliment->location }}</td>
-            <td>{{ $aliment->scadenza }}</td>
+            <td>{{ $aliment->location->name }}</td>
+            <td>{{ $aliment->expiryDate }}</td>
             <td>
                 <form action="{{ route('aliments.destroy',$aliment->id) }}" method="POST">
 
@@ -56,10 +56,18 @@
     </table>
     {{-- Non uso questa forma perchè devo passare dal richiamare il controller per passare i dati del model --}}
     {{-- <button type="button" class="btn btn-outline-light"><a href="{{ url('/locations/spesa') }}">Lista spesa</a></button> --}}
-    <button type="button" class="btn btn-outline-light"><a href="{{ route('spesa') }}">Lista spesa</a></button>
-    <button type="button" class="btn btn-outline-light"><a href="{{ route('frigorifero') }}">Frigorifero</a></button>
-    <button type="button" class="btn btn-outline-light"><a href="{{ route('magazzino') }}">Magazzino</a></button>
-    <button type="button" class="btn btn-outline-light"><a href="{{ route('frigorifero') }}">In scadenza</a></button>
+
+    {{-- <button type="button" class="btn btn-outline-light"><a href="{{ route('spesa') }}">Lista spesa</a></button> --}}
+    {{-- <button type="button" class="btn btn-outline-light"><a href="{{ route('frigorifero') }}">Frigorifero</a></button> --}}
+    {{-- <button type="button" class="btn btn-outline-light"><a href="{{ route('magazzino') }}">Magazzino</a></button> --}}
+    {{-- <button type="button" class="btn btn-outline-light"><a href="{{ route('frigorifero') }}">In scadenza</a></button> --}}
+    {{-- <br>
+    @foreach($locations as $location)
+    <button type="button" class="btn btn-outline-info"><a href="{{ route('findLocation',$location->id) }}">{{ $location->name }}</a></button>
+    @endforeach
+    <br><br> --}}
+    <button type="button" class="btn btn-outline-info"><a href="{{ route('types.index') }}">Type managment</a></button>
+    <button type="button" class="btn btn-outline-info"><a href="{{ route('locations.index') }}">Location managment</a></button>
 
     {!! $aliments->links() !!}
 

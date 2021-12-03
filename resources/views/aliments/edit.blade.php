@@ -31,18 +31,11 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group" >
                     <strong>Type:</strong>
-                    <select name="type" id="type" value="{{ $aliment->type }}">
-                        <option selected value="{{ $aliment->type }}">{{ $aliment->type }}</option>
-                        <option value="carne">Carne</option>
-                        <option value="pesce">Pesce</option>
-                        <option value="uova">Uova</option>
-                        <option value="latte e derivati">Latte e derivati</option>
-                        <option value="cereali e derivati">Cereali e derivati</option>
-                        <option value="legumi">Legumi</option>
-                        <option value="grassi">Grassi</option>
-                        <option value="frutta">Frutta</option>
-                        <option value="verdura">Verdura</option>
-                        <option value="verdura">Bevande</option>
+                    <select name="type_id" id="type_id" value="{{ $aliment->type->id }}">
+                    <option selected value="{{ $aliment->type->id }}">{{ $aliment->type->name }}</option>
+                    @foreach($types as $type )
+                        <option value="{{ $type->id }}">{{ $type->name }}</option>
+                    @endforeach
                     </select>
                 </div>
             </div>
@@ -55,7 +48,7 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Number:</strong>
-                    <input type="number" name="numero" value="{{ $aliment->numero }}" min="0" step="1" class="form-control" placeholder="Numero">
+                    <input type="number" name="number" value="{{ $aliment->number }}" min="0" step="1" class="form-control" placeholder="Number">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
@@ -67,18 +60,18 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Location:</strong>
-                    <select name="location" id="location" value="{{ $aliment->location }}">
-                        <option selected value="{{ $aliment->location }}">{{ $aliment->location }}</option>
-                        <option value="frigorifero">Frigorifero</option>
-                        <option value="lista spesa">Lista spesa</option>
-                        <option value="magazzino">Magazzino</option>
+                    <select name="location_id" id="location_id" value="{{ $aliment->location->id }}">
+                        <option selected value="{{ $aliment->location->id }}">{{ $aliment->location->name }}</option>
+                        @foreach($locations as $location )
+                            <option value="{{ $location->id }}">{{ $location->name }}</option>
+                        @endforeach
                     </select>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Scadenza:</strong>
-                    <input type="date" name="scadenza" value="{{ $aliment->scadenza }}" class="form-control" placeholder="scadenza">
+                    <strong>Expiry date:</strong>
+                    <input type="date" name="expiryDate" value="{{ $aliment->expiryDate }}" class="form-control" placeholder="Expiry date">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
