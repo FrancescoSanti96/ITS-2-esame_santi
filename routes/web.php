@@ -26,7 +26,7 @@ use App\Http\Controllers\LocationController;
 // Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-// Route::get('/', [AlimentController::class, 'index'])->name('home');
+Route::get('/', [AlimentController::class, 'index'])->name('home');
 // Route::get('/1', [TypeController::class, 'index'])->name('homeType');
 // Route::get('/2', [LocationController::class, 'index'])->name('homeLocation');
 
