@@ -54,18 +54,13 @@
         </tr>
         @endforeach
     </table>
-    {{-- Non uso questa forma perchè devo passare dal richiamare il controller per passare i dati del model --}}
-    {{-- <button type="button" class="btn btn-outline-light"><a href="{{ url('/locations/spesa') }}">Lista spesa</a></button> --}}
 
-    {{-- <button type="button" class="btn btn-outline-light"><a href="{{ route('spesa') }}">Lista spesa</a></button> --}}
-    {{-- <button type="button" class="btn btn-outline-light"><a href="{{ route('frigorifero') }}">Frigorifero</a></button> --}}
-    {{-- <button type="button" class="btn btn-outline-light"><a href="{{ route('magazzino') }}">Magazzino</a></button> --}}
-    {{-- <button type="button" class="btn btn-outline-light"><a href="{{ route('frigorifero') }}">In scadenza</a></button> --}}
-    {{-- <br>
-    @foreach($locations as $location)
-    <button type="button" class="btn btn-outline-info"><a href="{{ route('findLocation',$location->id) }}">{{ $location->name }}</a></button>
-    @endforeach
-    <br><br> --}}
+    {{-- mettere if --}}
+    <button type="button" class="btn btn-outline-light"><a href="{{ route('shop') }}">Shop list</a></button>
+    <button type="button" class="btn btn-outline-light"><a href="{{ route('refrigerator') }}">Refrigerator</a></button>
+    <button type="button" class="btn btn-outline-light"><a href="{{ route('warehouse') }}">Food warehouse</a></button>
+    <br><br>
+
     <button type="button" class="btn btn-outline-info"><a href="{{ route('types.index') }}">Type managment</a></button>
     <button type="button" class="btn btn-outline-info"><a href="{{ route('locations.index') }}">Location managment</a></button>
 

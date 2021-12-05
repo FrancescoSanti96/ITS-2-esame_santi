@@ -1,4 +1,4 @@
-@extends('locations.layout')
+@extends('findLocations.layout')
 
 @section('content')
     <div class="row">
@@ -36,12 +36,12 @@
         {{-- @if ($aliment->location == 'frigorifero') --}}
             <tr>
                 <td>{{ $aliment->id }}</td>
-                <td>{{ $aliment->type }}</td>
+                <td>{{ $aliment->type->name }}</td>
                 <td>{{ $aliment->name }}</td>
                 <td>{{ $aliment->number }}</td>
                 <td>{{ $aliment->brand }}</td>
-                <td>{{ $aliment->location }}</td>
-                <td>{{ $aliment->scadenza }}</td>
+                <td>{{ $aliment->location->name }}</td>
+                <td>{{ $aliment->expiryDate }}</td>
                 <td>
                     <form action="{{ route('aliments.destroy',$aliment->id) }}" method="POST">
 
@@ -60,10 +60,13 @@
         @endforeach
     </table>
 
-    <button type="button" class="btn btn-outline-light"><a href="{{ route('aliments.index') }}">Home</a></button>
-    <button type="button" class="btn btn-outline-light"><a href="{{ route('spesa') }}">Lista spesa</a></button>
-    <button type="button" class="btn btn-outline-light"><a href="{{ route('magazzino') }}">Magazzino</a></button>
-    <button type="button" class="btn btn-outline-light"><a href="{{ route('frigorifero') }}">In scadenza</a></button>
+    <button type="button" class="btn btn-outline-light"><a href="{{ route('shop') }}">Shop list</a></button>
+    <button type="button" class="btn btn-outline-light"><a href="{{ route('warehouse') }}">Food warehouse</a></button>
+    <br><br>
+
+    <button type="button" class="btn btn-outline-info"><a href="{{ route('aliments.index') }}">Food managmet</a></button>
+    <button type="button" class="btn btn-outline-info"><a href="{{ route('types.index') }}">Type managment</a></button>
+    <button type="button" class="btn btn-outline-info"><a href="{{ route('locations.index') }}">Location managment</a></button>
 
     {!! $aliments->links() !!}
 

@@ -118,28 +118,22 @@ class AlimentController extends Controller
                         ->with('success','Aliment deleted successfully');
     }
 
-    public function findLocation(Location $location)
+    public function refrigerator()
     {
-        $aliments = Aliment::where('location_id','=', 'location->id')->paginate(8);
-        return view('findLocations.{{ $location->name }}',compact('aliments'));
+        // solo gli alimenti con location = frigorifero saranno passati alla view
+        $aliments = Aliment::where('location_id','=', 1)->paginate(8);
+        return view('findLocations.frigorifero',compact('aliments'));
     }
 
-    // public function frigorifero()
-    // {
-    //     // solo gli alimenti con location = frigorifero saranno passati alla view
-    //     $aliments = Aliment::where('location','=', 'frigorifero')->paginate(8);
-    //     return view('locations.frigorifero',compact('aliments'));
-    // }
+    public function shop()
+    {
+        $aliments = Aliment::where('location_id','=', 2)->paginate(8);
+        return view('findLocations.spesa',compact('aliments'));
+    }
 
-    // public function spesa()
-    // {
-    //     $aliments = Aliment::where('location','=', 'lista spesa')->paginate(8);
-    //     return view('locations.spesa',compact('aliments'));
-    // }
-
-    // public function magazzino()
-    // {
-    //     $aliments = Aliment::where('location','=', 'magazzino')->paginate(8);
-    //     return view('locations.magazzino',compact('aliments'));
-    // }
+    public function warehouse()
+    {
+        $aliments = Aliment::where('location_id','=', 3)->paginate(8);
+        return view('findLocations.magazzino',compact('aliments'));
+    }
 }
