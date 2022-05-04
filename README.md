@@ -11,6 +11,6 @@ Installazione:
 -eseguire php artisan db::seed
 -eseguire php artisan serve per avviare il progetto
 
-Numero: 3248368172
+
 
 
