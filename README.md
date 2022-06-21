@@ -8,7 +8,7 @@ Installazione:
 -creare .env con le specifiche di .env.example
 -creare db mysql di nome santi
 -eseguire php artisan migrate
--eseguire php artisan db::seed
+-eseguire php artisan db:seed
 -eseguire php artisan serve per avviare il progetto
 
 
